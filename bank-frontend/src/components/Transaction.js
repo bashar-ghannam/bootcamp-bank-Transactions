@@ -9,7 +9,7 @@ class Transaction extends Component {
     return (
       <tr>
         <th scope="row">{this.props.order + 1}</th>
-        <td style={{ color: transcation.amount >= 0 ? 'green' : 'red' }}>
+        <td className={transcation.amount >= 0 ? 'greenColor' : 'redColor'}>
           {transcation.amount}
         </td>
         <td>{transcation.category}</td>

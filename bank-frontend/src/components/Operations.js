@@ -8,35 +8,34 @@ class Temp extends Component {
       amount: '',
       category: '',
       vendor: '',
+      showValidation: false,
     };
   }
-
+  isTheFormValid = () => {
+    return (
+      this.state.amount.trim() !== '' &&
+      this.state.category.trim() !== '' &&
+      this.state.vendor.trim() !== ''
+    );
+  };
   deposit = () => {
     let amount = this.state.amount.trim();
     let category = this.state.category.trim();
     let vendor = this.state.vendor.trim();
-    if (amount === '' || category === '' || vendor === '') {
-      alert('Please fill all fields!');
-    } else {
-      let transcation = { amount, category, vendor };
-      this.props.addTranscation(transcation);
-      const { navigate } = this.props;
-      navigate('/');
-    }
+    let transcation = { amount, category, vendor };
+    this.props.addTranscation(transcation);
+    const { navigate } = this.props;
+    navigate('/');
   };
 
   withdraw = () => {
     let amount = this.state.amount.trim();
     let category = this.state.category.trim();
     let vendor = this.state.vendor.trim();
-    if (amount === '' || category === '' || vendor === '') {
-      alert('Please fill all fields!');
-    } else {
-      let transcation = { amount: -amount, category, vendor };
-      this.props.addTranscation(transcation);
-      const { navigate } = this.props;
-      navigate('/');
-    }
+    let transcation = { amount: -amount, category, vendor };
+    this.props.addTranscation(transcation);
+    const { navigate } = this.props;
+    navigate('/');
   };
 
   render() {
@@ -55,6 +54,11 @@ class Temp extends Component {
               value={this.state.amount}
               onChange={(e) => this.setState({ amount: e.target.value })}
             />
+            {this.state.amount.trim() === '' && this.state.showValidation && (
+              <label className="form-label text-danger">
+                * it is a required faild
+              </label>
+            )}
           </div>
           <div className="col-md-4">
             <label htmlFor="category-input" className="form-label">
@@ -68,6 +72,11 @@ class Temp extends Component {
               value={this.state.category}
               onChange={(e) => this.setState({ category: e.target.value })}
             />
+            {this.state.category.trim() === '' && this.state.showValidation && (
+              <label className="form-label text-danger">
+                * it is a required faild
+              </label>
+            )}
           </div>
           <div className="col-md-4">
             <label htmlFor="vendor-input" className="form-label">
@@ -81,12 +90,30 @@ class Temp extends Component {
               value={this.state.vendor}
               onChange={(e) => this.setState({ vendor: e.target.value })}
             />
+            {this.state.vendor.trim() === '' && this.state.showValidation && (
+              <label className="form-label text-danger">
+                * it is a required faild
+              </label>
+            )}
           </div>
+
           <div className="col-md-4 mt-3 d-flex justify-content-around">
-            <button className="btn btn-primary" onClick={this.deposit}>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                this.setState({ showValidation: true });
+                if (this.isTheFormValid()) this.deposit();
+              }}
+            >
               Deposit
             </button>
-            <button className="btn btn-primary" onClick={this.withdraw}>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                this.setState({ showValidation: true });
+                if (this.isTheFormValid()) this.withdraw();
+              }}
+            >
               Withdraw
             </button>
           </div>

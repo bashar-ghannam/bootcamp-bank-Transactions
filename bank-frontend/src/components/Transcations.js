@@ -7,9 +7,7 @@ class Transcations extends Component {
     return (
       <div>
         {this.props.transcations.length === 0 ? (
-          <h4 className='noItems'>
-            No transcations added yet!
-          </h4>
+          <h4 className="noItems">No transcations added yet!</h4>
         ) : (
           <div className="w-100 mt-5">
             <h1 className="w-75 m-auto">

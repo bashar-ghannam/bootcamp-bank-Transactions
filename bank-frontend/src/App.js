@@ -26,9 +26,11 @@ class App extends Component {
 
   getTranscations = async () => {
     let transcations = await axios.get('http://localhost:4200/transactions');
+    let categorys = await axios.get('http://localhost:4200/categorys');
     await this.setState({
       transcations: transcations.data,
       isLoading: true,
+      categorys: categorys.data,
     });
     this.getBalance(transcations.data);
   };

@@ -5,8 +5,10 @@ class Balance extends Component {
     return (
       <div>
         <h3>
-          Balance :{' '}
-          <span style={{ color: this.props.balance >= 500 ? 'green' : 'red' }}>
+          Balance :
+          <span
+            className={this.props.balance >= 500 ? 'greenColor' : 'redColor'}
+          >
             {this.props.balance}
           </span>
         </h3>

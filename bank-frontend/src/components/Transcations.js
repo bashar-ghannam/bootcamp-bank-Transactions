@@ -3,6 +3,19 @@ import Balance from './Balance';
 import Transaction from './Transaction';
 
 class Transcations extends Component {
+  constructor() {
+    super();
+    this.state = {
+      toggleBG: false,
+    };
+  }
+
+  toggleBg = () => {
+    this.setState({
+      toggleBG: !this.state.toggleBG,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -30,10 +43,12 @@ class Transcations extends Component {
                     transcation={transcation}
                     key={index}
                     deleteTranscation={this.props.deleteTranscation}
+                    bg={this.state.toggleBG}
                   />
                 ))}
               </tbody>
             </table>
+            <button onClick={this.toggleBg}>Change bg</button>
           </div>
         )}
       </div>

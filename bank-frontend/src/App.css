@@ -45,3 +45,7 @@
 .redColor {
   color: rgb(188, 13, 13) !important;
 }
+
+.redBg {
+  background-color: lightcoral;
+}

@@ -6,8 +6,9 @@ class Transaction extends Component {
   };
   render() {
     let transcation = this.props.transcation;
+    let color = this.props.bg && transcation.amount < 0 ? 'redBg' : '';
     return (
-      <tr>
+      <tr className={color}>
         <th scope="row">{this.props.order + 1}</th>
         <td className={transcation.amount >= 0 ? 'greenColor' : 'redColor'}>
           {transcation.amount}
